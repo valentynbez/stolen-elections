@@ -6,31 +6,42 @@ This repository contains data, notebooks, and statistical models applying **Serg
 
 ---
 
-## 📊 Key Forensic Findings
+## 🔬 Academic Foundations & References
 
-1. **Massive Bimodal Distribution ("The Second Hump"):**
-   - The genuine electorate forms a standard bell curve centered around **~42%–45% modal turnout**.
-   - An artificial second peak extends across **75% to 100% turnout**, where incremental votes are allocated almost exclusively to the ruling party (*United Russia* / administrative incumbent), while opposition candidate totals collapse toward zero.
+The analyses in this repository directly implement and validate the methodology published by independent statistician **Sergey Shpilkin** ([Google Scholar Profile](https://scholar.google.com/citations?user=kX-Zzb4AAAAJ&hl=en)) and his co-authors:
 
-2. **Quantification of Fabricated / "Stolen" Ballots (Shpilkin Model):**
-   - **Federal Party List:** An estimated **14.6 million anomalous votes** (45.4% of United Russia's official paper ballots). Removing these excess votes drops estimated United Russia paper support from **58.7% to ~43.7%**, and national paper turnout from **55.5% to ~47.8%**.
-   - **Single-Mandate Districts:** An estimated **12.9 million anomalous votes** (43.5% of official regime votes), lowering estimated support from **55.3% to ~41.1%**.
+### Key Publications
+1. **Statistical Fingerprints of Electoral Fraud:**
+   > Kobak, D., Shpilkin, S., & Pshenichnikov, M. S. (2016a). *Statistical fingerprints of electoral fraud?* **Significance**, 13(4), 20–23. [doi:10.1111/j.1740-9713.2016.00936.x](https://doi.org/10.1111/j.1740-9713.2016.00936.x)  
+   *Foundational framework establishing unimodal Gaussian turnout assumptions and the forensic signatures of manipulation.*
 
-3. **Turnout vs. Candidate Share Divergence (OLS Regression):**
-   - Ordinary Least Squares regression on $N = 87,700+$ paper polling stations:
-     $$\text{Vote Share} = 17.41 + 0.6030 \times \text{Turnout} \quad (r = 0.624, \; R^2 = 0.390, \; p < 0.0001)$$
-   - Rejects the null hypothesis of unmanipulated voting ($H_0: b = 0$).
+2. **The "Sawtooth" Integer Effect (*Пила*):**
+   > Kobak, D., Shpilkin, S., & Pshenichnikov, M. S. (2016b). *Integer percentages as electoral falsification fingerprints.* **The Annals of Applied Statistics**, 10(1), 54–73. [doi:10.1214/16-AOAS904](https://doi.org/10.1214/16-AOAS904)  
+   *Mathematical proof that spikes at integer percentages and multiples of 5% in precinct protocols reflect human quota targeting rather than legitimate voting distributions.*
 
-4. **Gaussian Mixture Modeling (EM Decomposition, 2 Components):**
-   - **Cluster 1 (Baseline / Organic Electorate, 49.3% weight):** Mean Turnout $45.0\% \pm 12.1\%$, Mean Vote Share $42.1\% \pm 16.0\%$.
-   - **Cluster 2 (Anomalous / Manipulated Electorate, 50.7% weight):** Mean Turnout $77.0\% \pm 13.2\%$, Mean Vote Share $66.2\% \pm 15.3\%$.
+3. **Turnout Distribution Peaks ("Putin's Peaks"):**
+   > Kobak, D., Shpilkin, S., & Pshenichnikov, M. S. (2018). *Putin's peaks: Russian election data revisited.* **Significance**, 15(3), 8–9. [doi:10.1111/j.1740-9713.2018.01141.x](https://doi.org/10.1111/j.1740-9713.2018.01141.x)  
+   > Kobak, D., Shpilkin, S., & Pshenichnikov, M. S. (2020). *Suspect peaks in Russia's "referendum" results.* **Significance**, 17(5), 8–9. [doi:10.1111/1740-9713.01438](https://doi.org/10.1111/1740-9713.01438)  
+   *Longitudinal documentation of bimodal turnout distortions and anomalous high-turnout peaks.*
 
-5. **Remote Electronic Voting (DEG / ДЭГ):**
-   - Analyzes the **33 regions** with DEG vs. **56 regions** without DEG.
-   - The 97 electronic pseudo-stations (`is_deg == 1`) cluster at extreme turnouts (**85%–95%**) with near-total regime margins.
+4. **2D Joint Distribution Correlation Analysis:**
+   > Kobak, D., Shpilkin, S., & Pshenichnikov, M. S. (2012). *Statistical anomalies in 2011–2012 Russian elections revealed by 2D correlation analysis.* **arXiv preprint arXiv:1205.0741**. [arxiv.org/abs/1205.0741](https://arxiv.org/abs/1205.0741)  
+   *Bivariate Turnout vs. Vote Share diagnostics, ordinary least squares hypothesis testing ($H_0: b = 0$), and Gaussian mixture decomposition.*
 
-6. **The "Sawtooth" Integer Effect (*Пила*):**
-   - Significant artificial spikes in precinct turnout counts at exact multiples of 5% and 10% (70%, 75%, 80%, 85%, 90%, 95%, 100%), characteristic of protocol target fabrication.
+---
+
+## 📊 Key Forensic Findings (Section Mapping)
+
+| Analysis Section in Notebook | Academic Reference | Key Empirical Finding |
+|---|---|---|
+| **Section 2: Classic Shpilkin Histograms** | Kobak et al. (2016a, 2018) | Severe bimodal split: organic peak at ~43% turnout vs. artificial "second hump" across 75%–100% |
+| **Section 3: Metric Variations (Vote Share)** | Kobak et al. (2016a) | Opposition shares collapse to ~0% as turnout rises, while regime candidate surges toward ~95% |
+| **Section 4: Remote Electronic Voting (DEG)** | Shpilkin (2021/2026) | 97 DEG pseudo-stations cluster at extreme 85%–95% turnout with near-total regime margin |
+| **Section 5: Precinct-Level OLS Regression** | Kobak et al. (2012) | $\text{Share} = 17.41 + 0.603 \times \text{Turnout}$ ($r = 0.624, R^2 = 0.390, p < 0.0001$), rejecting $H_0: b = 0$ |
+| **Section 6: Gaussian Mixture Modeling (GMM)** | Kobak et al. (2012) | Objective EM separation: Organic Cluster (49.3% wt, turnout 45.0%) vs. Anomalous Cluster (50.7% wt, turnout 77.0%) |
+| **Section 7: The Sawtooth Rounding Effect** | Kobak et al. (2016b, *AOAS*) | Pronounced spikes in precinct frequency at exact multiples of 5% (70%, 75%, 80%, 85%, 90%, 95%, 100%) |
+| **Section 8: Shpilkin Excess Votes Model** | Shpilkin (2011/2012) | **14.6M anomalous votes** in Party List (45.4% of United Russia paper total); **12.9M** in Single-Mandate |
+| **Section 9: Regional Contrasts** | Kalinin & Mebane (2016) | Standard bell curves (Tomsk, Khabarovsk) vs. "electoral sultanates" with uniform 95% turnout (Kuzbass, Tatarstan) |
 
 ---
 
@@ -40,7 +51,7 @@ This repository contains data, notebooks, and statistical models applying **Serg
 ├── data/
 │   └── uik_protocols.csv.gz     # Consolidated CIK protocol data (87,842 UIKs)
 ├── notebooks/
-│   └── stolen-elections.ipynb   # Executed Jupyter Notebook with charts and English annotations
+│   └── stolen-elections.ipynb   # Fully executed Jupyter Notebook with charts and English annotations
 ├── README.md
 └── .gitignore
 ```
@@ -67,8 +78,8 @@ jupyter notebook notebooks/stolen-elections.ipynb
 
 ---
 
-## 📚 Acknowledgments & References
+## 📚 Acknowledgments & Attribution
 
-- **Methodology:** Sergey Shpilkin
-- **Analysis Reference:** [deg.zhizhin.xyz/shpilkin.html](https://deg.zhizhin.xyz/shpilkin.html)
+- **Methodology & Concept:** Sergey Shpilkin, Dmitry Kobak, Maxim S. Pshenichnikov
+- **Interactive Platform Reference:** [deg.zhizhin.xyz/shpilkin.html](https://deg.zhizhin.xyz/shpilkin.html)
 - **Data Integration:** Official CIK (izbirkom.ru) protocols, mirrored and archived by [iditena.org](https://iditena.org), [neshodilina.netlify.app](https://neshodilina.netlify.app), and [data.deg.observer](https://data.deg.observer).
